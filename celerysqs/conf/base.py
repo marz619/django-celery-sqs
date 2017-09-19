@@ -1,0 +1,1 @@
+from celerysqs.settings import *  # NOQA
