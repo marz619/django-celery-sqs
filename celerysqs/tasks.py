@@ -13,8 +13,8 @@ class ChanceException(Exception):
         self._rand = rand
         self._chance = chance
     
-    def __str__(self):
-        return "ChanceException({:.6f}/{:.6f})".format(self._rand, self._chance)
+    def __repr__(self):
+        return f"<ChanceException({self._rand:.6f}/{self._chance:.6f})>"
 
 
 @celery_app.task(bind=True, name='celerysqs.tasks.process', max_retries=3)
@@ -25,17 +25,16 @@ def process(self, task):
     try:
         chance = float(task.get('chance', 1.0))
         rand = random.random()
-
-        if rand < chance:
-            logger.info(
-                'Success: %s with chance %.6f/%.6f',
-                task.get('message', 'No Message'),
-                rand, chance,
-            )
-            return
-        raise ChanceException(rand, chance)
+        if rand > chance:
+            raise ChanceException(rand, chance)
     except (TypeError, ValueError) as err:
         logger.error('Error(%s): discarding %s', str(err), task)
     except ChanceException as ce:
         logger.error('%s: requeuing task %s', str(ce), task)
         raise self.retry(exc=ce, countdown=30)
+    else:
+        logger.info(
+            'Success: Task \'%s\' with chance %.6f/%.6f',
+            task.get('message', 'No Message'),
+            rand, chance,
+        )
