@@ -3,15 +3,18 @@
 A sample Django App that shows how to use Celery with Amazon SQS as the Broker.
 
 ## Quick how to
+
 * clone this repo
 * create a virtualenv & install requirements
+
 ```sh
-$> mkvirtualenv -p /usr/local/bin/python3 celery-sqs
-...
+$> mkvirtualenv -p `which python3` celery-sqs
 $> pip install -r requirements.txt
 ```
+
 * Add `celerysqs/secret.py` with the following template
   * NOTE: the access/secret keys must have the IAM Policy listed below attached
+
 ```python
 KEY = 'some secret key'
 
@@ -20,22 +23,31 @@ SQS = {
     'secret_key': 'your aws_secret_key',
 }
 ```
+
 * run the server
-```sh
-$> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws python manage.py runserver [ip:[port]]
-```
+
+    ```sh
+    $> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws python manage.py runserver [ip:[port]]
+    ```
+
 * run the celery worker
-```sh
-$> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws celery worker -A celerysqs --concurrency=1 -l info
-```
+
+    ```sh
+    $> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws celery worker -A celerysqs --concurrency=1 -l info
+    ```
+
 * queue some tasks
-```sh
-$> ./scripts/curls.sh
-```
+
+    ```sh
+    $> ./scripts/curls.sh
+    ```
 
 ## IAM Policy Requirements
 
+NOTE: Both are required
+
 ### ListQueues (*)
+
 ```json
 {
     "Version": "2012-10-17",
@@ -55,6 +67,7 @@ $> ./scripts/curls.sh
 ```
 
 ### CRUD (prefix-)
+
 ```json
 {
     "Version": "2012-10-17",
