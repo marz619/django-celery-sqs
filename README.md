@@ -13,7 +13,7 @@ $> pip install -r requirements.txt
 ```
 
 * Add `celerysqs/secret.py` with the following template
-  * NOTE: the access/secret keys must have the IAM Policy listed below attached
+  * NOTE: the access/secret keys must have _both_ IAM Policies listed below attached
 
 ```python
 KEY = 'some secret key'
