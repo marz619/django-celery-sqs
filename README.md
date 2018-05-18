@@ -6,6 +6,7 @@ A sample Django App that shows how to use Celery with Amazon SQS as the Broker.
 
 * clone this repo
 * create a virtualenv & install requirements
+* *NOTE* python 3 is required
 
 ```sh
 $> mkvirtualenv -p `which python3` celery-sqs
@@ -67,6 +68,8 @@ NOTE: Both are required
 ```
 
 ### CRUD (prefix-)
+
+*NOTE:* replace `{region}` and `{prefix}` with your amazon region and desired prefix
 
 ```json
 {
