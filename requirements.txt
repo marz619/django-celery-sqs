@@ -1,4 +1,2 @@
-Django==1.11.5
-boto3==1.4.7
-celery==4.1.0
-pycurl==7.43.0
+Django==2.1.5
+celery[sqs]==4.2.1

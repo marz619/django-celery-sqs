@@ -17,7 +17,7 @@ $> pip install -r requirements.txt
   * NOTE: the access/secret keys must have _both_ IAM Policies listed below attached
 
 ```python
-KEY = 'some secret key'
+KEY = 'some secret key'  # for Django
 
 SQS = {
     'access_key': 'your aws_access_key',
@@ -28,7 +28,7 @@ SQS = {
 * run the server
 
     ```sh
-    $> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws python manage.py runserver [ip:[port]]
+    $> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws python manage.py runserver
     ```
 
 * run the celery worker
