@@ -1,2 +1,2 @@
-Django==2.1.15
+Django==2.2.13
 celery[sqs]==4.2.1
