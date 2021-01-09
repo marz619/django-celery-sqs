@@ -19,7 +19,7 @@ Quick guide
 
 -  Add ``celerysqs/secret.py`` with the following template
 
-   .. note:: NOTE: the access/secret keys must have *both* IAM Policies listed below attached
+   .. note:: the access/secret keys must have *both* IAM Policies listed below attached
 
 .. code:: python
 
