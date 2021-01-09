@@ -1,7 +1,7 @@
 Celery-SQS
 ==========
 
-A sample Django App that shows how to use Celery with Amazon SQS as the Broker.
+A sample `Django <https://www.djangoproject.com/>`_ application that shows how to use `Celery <https://docs.celeryproject.org>`_ with `Amazon SQS <https://aws.amazon.com/sqs/>`_ as the Broker.
 
 Quick guide
 -----------
