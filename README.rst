@@ -1,15 +1,21 @@
 Celery-SQS
 ==========
 
-A sample `Django <https://www.djangoproject.com/>`_ application that shows how to use `Celery <https://docs.celeryproject.org>`_ with `Amazon SQS <https://aws.amazon.com/sqs/>`_ as the Broker.
+Sample `Django`_ application that shows how to use `Celery`_ with `Amazon SQS`_
+as the Broker.
+
+.. _`Django`: https://www.djangoproject.com/
+.. _`Celery`: https://docs.celeryproject.org/
+.. _`Amazon SQS`: https://aws.amazon.com/sqs/
+
 
 Quick guide
 -----------
 
+-  Python 3.6+ is **required**
 -  Clone this repo
 -  Create a virtualenv
 -  Install requirements
--  Python 3 is **required**
 
 .. code:: sh
 
@@ -19,7 +25,7 @@ Quick guide
 
 -  Add ``celerysqs/secret.py`` with the following template
 
-   .. note:: the access/secret keys must have *both* IAM Policies listed below attached
+   .. note:: The SQS keys must have both `IAM Policies`_ listed below
 
 .. code:: python
 
@@ -37,29 +43,30 @@ Django Commands
 
    .. code:: sh
 
-      DJANGO_SETTINGS_MODULE=celerysqs.conf.aws python manage.py runserver
+      $> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws python manage.py runserver
 
 -  run the celery worker
 
    .. code:: sh
 
-      DJANGO_SETTINGS_MODULE=celerysqs.conf.aws celery worker -A celerysqs --concurrency=1 -l info
+      $> DJANGO_SETTINGS_MODULE=celerysqs.conf.aws celery worker -A celerysqs --concurrency=1 -l info
 
 -  queue some tasks
 
    .. code:: sh
 
-      ./scripts/curls.sh
+      $> ./scripts/curls.sh
 
-IAM Policy Requirements
------------------------
 
-.. note:: *Both are required*
+IAM Policies
+------------
+
+.. note:: **Both** policy types are required
 
 .. _listqueues-:
 
-ListQueues (*)
-~~~~~~~~~~~~~~
+(1) ListQueues (*)
+~~~~~~~~~~~~~~~~~~
 
 .. code:: json
 
@@ -79,10 +86,14 @@ ListQueues (*)
        ]
    }
 
-CRUD (prefix-)
-~~~~~~~~~~~~~~
+.. _crud-prefix-:
 
-.. note:: replace ``{region}`` and ``{prefix}`` with your amazon region, and desired prefix
+(2) CRUD (prefix)
+~~~~~~~~~~~~~~~~~~
+
+.. note::
+   -  Replace ``{region}`` with your AWS Region
+   -  Replace ``{prefix}`` desired queue prefix
 
 .. code:: json
 
@@ -104,7 +115,7 @@ CRUD (prefix-)
                    "sqs:SetQueueAttributes"
                ],
                "Resource": [
-                   "arn:aws:sqs:{region}:*:{prefix}-*"
+                   "arn:aws:sqs:{region}:*:{prefix}*"
                ]
            }
        ]
