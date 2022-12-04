@@ -12,7 +12,7 @@ as the Broker.
 Quick guide
 -----------
 
--  Python 3.6+ is **required**
+-  Python 3.7+ is **required**
 -  Clone this repo
 -  Create a virtualenv
 -  Install requirements
