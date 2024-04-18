@@ -1,2 +1,2 @@
 Django==4.1.13
-celery[sqs]==5.3.6
+celery[sqs]==5.4.0
