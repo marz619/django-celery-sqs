@@ -1,0 +1,17 @@
+[project]
+name = "django-celery-sqs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "celery[sqs]==5.4.0",
+    "django==4.2.20",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.15.0",
+    "pdbpp>=0.10.3",
+    "pylint>=3.3.5",
+]
