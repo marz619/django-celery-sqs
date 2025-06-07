@@ -5,7 +5,7 @@ description = "Django + Celery + SQS"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "celery[sqs]==5.4.0",
+    "celery[sqs]==5.5.3",
     "django==4.2.20",
 ]
 
