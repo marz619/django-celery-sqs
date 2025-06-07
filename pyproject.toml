@@ -1,7 +1,7 @@
 [project]
 name = "django-celery-sqs"
 version = "0.1.0"
-description = "Add your description here"
+description = "Django + Celery + SQS"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
